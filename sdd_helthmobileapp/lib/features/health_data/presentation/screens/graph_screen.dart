@@ -166,7 +166,7 @@ class _StepsChart extends ConsumerWidget {
                   dotData: const FlDotData(show: true),
                   belowBarData: BarAreaData(
                     show: true,
-                    color: AppTheme.stepsColor.withOpacity(0.2),
+                    color: AppTheme.stepsColor.withValues(alpha: 0.2),
                   ),
                 ),
               ],
@@ -268,7 +268,7 @@ class _WeightChart extends ConsumerWidget {
                   dotData: const FlDotData(show: true),
                   belowBarData: BarAreaData(
                     show: true,
-                    color: AppTheme.weightColor.withOpacity(0.2),
+                    color: AppTheme.weightColor.withValues(alpha: 0.2),
                   ),
                 ),
               ],
@@ -365,7 +365,7 @@ class _TemperatureChart extends ConsumerWidget {
                   dotData: const FlDotData(show: true),
                   belowBarData: BarAreaData(
                     show: true,
-                    color: AppTheme.temperatureColor.withOpacity(0.2),
+                    color: AppTheme.temperatureColor.withValues(alpha: 0.2),
                   ),
                 ),
               ],

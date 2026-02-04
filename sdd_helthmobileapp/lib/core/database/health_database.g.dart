@@ -4,7 +4,7 @@ part of 'health_database.dart';
 
 // ignore_for_file: type=lint
 class $StepRecordsTable extends StepRecords
-    with TableInfo<$StepRecordsTable, StepRecord> {
+    with TableInfo<$StepRecordsTable, StepRecordDb> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -77,7 +77,7 @@ class $StepRecordsTable extends StepRecords
   static const String $name = 'step_records';
   @override
   VerificationContext validateIntegrity(
-    Insertable<StepRecord> instance, {
+    Insertable<StepRecordDb> instance, {
     bool isInserting = false,
   }) {
     final context = VerificationContext();
@@ -124,9 +124,9 @@ class $StepRecordsTable extends StepRecords
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  StepRecord map(Map<String, dynamic> data, {String? tablePrefix}) {
+  StepRecordDb map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return StepRecord(
+    return StepRecordDb(
       id: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}id'],
@@ -156,13 +156,13 @@ class $StepRecordsTable extends StepRecords
   }
 }
 
-class StepRecord extends DataClass implements Insertable<StepRecord> {
+class StepRecordDb extends DataClass implements Insertable<StepRecordDb> {
   final String id;
   final DateTime date;
   final int steps;
   final bool isAutoSync;
   final DateTime? createdAt;
-  const StepRecord({
+  const StepRecordDb({
     required this.id,
     required this.date,
     required this.steps,
@@ -194,12 +194,12 @@ class StepRecord extends DataClass implements Insertable<StepRecord> {
     );
   }
 
-  factory StepRecord.fromJson(
+  factory StepRecordDb.fromJson(
     Map<String, dynamic> json, {
     ValueSerializer? serializer,
   }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return StepRecord(
+    return StepRecordDb(
       id: serializer.fromJson<String>(json['id']),
       date: serializer.fromJson<DateTime>(json['date']),
       steps: serializer.fromJson<int>(json['steps']),
@@ -219,21 +219,21 @@ class StepRecord extends DataClass implements Insertable<StepRecord> {
     };
   }
 
-  StepRecord copyWith({
+  StepRecordDb copyWith({
     String? id,
     DateTime? date,
     int? steps,
     bool? isAutoSync,
     Value<DateTime?> createdAt = const Value.absent(),
-  }) => StepRecord(
+  }) => StepRecordDb(
     id: id ?? this.id,
     date: date ?? this.date,
     steps: steps ?? this.steps,
     isAutoSync: isAutoSync ?? this.isAutoSync,
     createdAt: createdAt.present ? createdAt.value : this.createdAt,
   );
-  StepRecord copyWithCompanion(StepRecordsCompanion data) {
-    return StepRecord(
+  StepRecordDb copyWithCompanion(StepRecordsCompanion data) {
+    return StepRecordDb(
       id: data.id.present ? data.id.value : this.id,
       date: data.date.present ? data.date.value : this.date,
       steps: data.steps.present ? data.steps.value : this.steps,
@@ -246,7 +246,7 @@ class StepRecord extends DataClass implements Insertable<StepRecord> {
 
   @override
   String toString() {
-    return (StringBuffer('StepRecord(')
+    return (StringBuffer('StepRecordDb(')
           ..write('id: $id, ')
           ..write('date: $date, ')
           ..write('steps: $steps, ')
@@ -261,7 +261,7 @@ class StepRecord extends DataClass implements Insertable<StepRecord> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is StepRecord &&
+      (other is StepRecordDb &&
           other.id == this.id &&
           other.date == this.date &&
           other.steps == this.steps &&
@@ -269,7 +269,7 @@ class StepRecord extends DataClass implements Insertable<StepRecord> {
           other.createdAt == this.createdAt);
 }
 
-class StepRecordsCompanion extends UpdateCompanion<StepRecord> {
+class StepRecordsCompanion extends UpdateCompanion<StepRecordDb> {
   final Value<String> id;
   final Value<DateTime> date;
   final Value<int> steps;
@@ -294,7 +294,7 @@ class StepRecordsCompanion extends UpdateCompanion<StepRecord> {
   }) : id = Value(id),
        date = Value(date),
        steps = Value(steps);
-  static Insertable<StepRecord> custom({
+  static Insertable<StepRecordDb> custom({
     Expression<String>? id,
     Expression<DateTime>? date,
     Expression<int>? steps,
@@ -369,7 +369,7 @@ class StepRecordsCompanion extends UpdateCompanion<StepRecord> {
 }
 
 class $WeightRecordsTable extends WeightRecords
-    with TableInfo<$WeightRecordsTable, WeightRecord> {
+    with TableInfo<$WeightRecordsTable, WeightRecordDb> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -421,7 +421,7 @@ class $WeightRecordsTable extends WeightRecords
   static const String $name = 'weight_records';
   @override
   VerificationContext validateIntegrity(
-    Insertable<WeightRecord> instance, {
+    Insertable<WeightRecordDb> instance, {
     bool isInserting = false,
   }) {
     final context = VerificationContext();
@@ -459,9 +459,9 @@ class $WeightRecordsTable extends WeightRecords
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  WeightRecord map(Map<String, dynamic> data, {String? tablePrefix}) {
+  WeightRecordDb map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return WeightRecord(
+    return WeightRecordDb(
       id: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}id'],
@@ -487,12 +487,12 @@ class $WeightRecordsTable extends WeightRecords
   }
 }
 
-class WeightRecord extends DataClass implements Insertable<WeightRecord> {
+class WeightRecordDb extends DataClass implements Insertable<WeightRecordDb> {
   final String id;
   final DateTime date;
   final double weight;
   final DateTime? createdAt;
-  const WeightRecord({
+  const WeightRecordDb({
     required this.id,
     required this.date,
     required this.weight,
@@ -521,12 +521,12 @@ class WeightRecord extends DataClass implements Insertable<WeightRecord> {
     );
   }
 
-  factory WeightRecord.fromJson(
+  factory WeightRecordDb.fromJson(
     Map<String, dynamic> json, {
     ValueSerializer? serializer,
   }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return WeightRecord(
+    return WeightRecordDb(
       id: serializer.fromJson<String>(json['id']),
       date: serializer.fromJson<DateTime>(json['date']),
       weight: serializer.fromJson<double>(json['weight']),
@@ -544,19 +544,19 @@ class WeightRecord extends DataClass implements Insertable<WeightRecord> {
     };
   }
 
-  WeightRecord copyWith({
+  WeightRecordDb copyWith({
     String? id,
     DateTime? date,
     double? weight,
     Value<DateTime?> createdAt = const Value.absent(),
-  }) => WeightRecord(
+  }) => WeightRecordDb(
     id: id ?? this.id,
     date: date ?? this.date,
     weight: weight ?? this.weight,
     createdAt: createdAt.present ? createdAt.value : this.createdAt,
   );
-  WeightRecord copyWithCompanion(WeightRecordsCompanion data) {
-    return WeightRecord(
+  WeightRecordDb copyWithCompanion(WeightRecordsCompanion data) {
+    return WeightRecordDb(
       id: data.id.present ? data.id.value : this.id,
       date: data.date.present ? data.date.value : this.date,
       weight: data.weight.present ? data.weight.value : this.weight,
@@ -566,7 +566,7 @@ class WeightRecord extends DataClass implements Insertable<WeightRecord> {
 
   @override
   String toString() {
-    return (StringBuffer('WeightRecord(')
+    return (StringBuffer('WeightRecordDb(')
           ..write('id: $id, ')
           ..write('date: $date, ')
           ..write('weight: $weight, ')
@@ -580,14 +580,14 @@ class WeightRecord extends DataClass implements Insertable<WeightRecord> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is WeightRecord &&
+      (other is WeightRecordDb &&
           other.id == this.id &&
           other.date == this.date &&
           other.weight == this.weight &&
           other.createdAt == this.createdAt);
 }
 
-class WeightRecordsCompanion extends UpdateCompanion<WeightRecord> {
+class WeightRecordsCompanion extends UpdateCompanion<WeightRecordDb> {
   final Value<String> id;
   final Value<DateTime> date;
   final Value<double> weight;
@@ -609,7 +609,7 @@ class WeightRecordsCompanion extends UpdateCompanion<WeightRecord> {
   }) : id = Value(id),
        date = Value(date),
        weight = Value(weight);
-  static Insertable<WeightRecord> custom({
+  static Insertable<WeightRecordDb> custom({
     Expression<String>? id,
     Expression<DateTime>? date,
     Expression<double>? weight,
@@ -676,7 +676,7 @@ class WeightRecordsCompanion extends UpdateCompanion<WeightRecord> {
 }
 
 class $TemperatureRecordsTable extends TemperatureRecords
-    with TableInfo<$TemperatureRecordsTable, TemperatureRecord> {
+    with TableInfo<$TemperatureRecordsTable, TemperatureRecordDb> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -730,7 +730,7 @@ class $TemperatureRecordsTable extends TemperatureRecords
   static const String $name = 'temperature_records';
   @override
   VerificationContext validateIntegrity(
-    Insertable<TemperatureRecord> instance, {
+    Insertable<TemperatureRecordDb> instance, {
     bool isInserting = false,
   }) {
     final context = VerificationContext();
@@ -771,9 +771,9 @@ class $TemperatureRecordsTable extends TemperatureRecords
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  TemperatureRecord map(Map<String, dynamic> data, {String? tablePrefix}) {
+  TemperatureRecordDb map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return TemperatureRecord(
+    return TemperatureRecordDb(
       id: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}id'],
@@ -799,13 +799,13 @@ class $TemperatureRecordsTable extends TemperatureRecords
   }
 }
 
-class TemperatureRecord extends DataClass
-    implements Insertable<TemperatureRecord> {
+class TemperatureRecordDb extends DataClass
+    implements Insertable<TemperatureRecordDb> {
   final String id;
   final DateTime date;
   final double temperature;
   final DateTime? createdAt;
-  const TemperatureRecord({
+  const TemperatureRecordDb({
     required this.id,
     required this.date,
     required this.temperature,
@@ -834,12 +834,12 @@ class TemperatureRecord extends DataClass
     );
   }
 
-  factory TemperatureRecord.fromJson(
+  factory TemperatureRecordDb.fromJson(
     Map<String, dynamic> json, {
     ValueSerializer? serializer,
   }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return TemperatureRecord(
+    return TemperatureRecordDb(
       id: serializer.fromJson<String>(json['id']),
       date: serializer.fromJson<DateTime>(json['date']),
       temperature: serializer.fromJson<double>(json['temperature']),
@@ -857,19 +857,19 @@ class TemperatureRecord extends DataClass
     };
   }
 
-  TemperatureRecord copyWith({
+  TemperatureRecordDb copyWith({
     String? id,
     DateTime? date,
     double? temperature,
     Value<DateTime?> createdAt = const Value.absent(),
-  }) => TemperatureRecord(
+  }) => TemperatureRecordDb(
     id: id ?? this.id,
     date: date ?? this.date,
     temperature: temperature ?? this.temperature,
     createdAt: createdAt.present ? createdAt.value : this.createdAt,
   );
-  TemperatureRecord copyWithCompanion(TemperatureRecordsCompanion data) {
-    return TemperatureRecord(
+  TemperatureRecordDb copyWithCompanion(TemperatureRecordsCompanion data) {
+    return TemperatureRecordDb(
       id: data.id.present ? data.id.value : this.id,
       date: data.date.present ? data.date.value : this.date,
       temperature: data.temperature.present
@@ -881,7 +881,7 @@ class TemperatureRecord extends DataClass
 
   @override
   String toString() {
-    return (StringBuffer('TemperatureRecord(')
+    return (StringBuffer('TemperatureRecordDb(')
           ..write('id: $id, ')
           ..write('date: $date, ')
           ..write('temperature: $temperature, ')
@@ -895,14 +895,14 @@ class TemperatureRecord extends DataClass
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is TemperatureRecord &&
+      (other is TemperatureRecordDb &&
           other.id == this.id &&
           other.date == this.date &&
           other.temperature == this.temperature &&
           other.createdAt == this.createdAt);
 }
 
-class TemperatureRecordsCompanion extends UpdateCompanion<TemperatureRecord> {
+class TemperatureRecordsCompanion extends UpdateCompanion<TemperatureRecordDb> {
   final Value<String> id;
   final Value<DateTime> date;
   final Value<double> temperature;
@@ -924,7 +924,7 @@ class TemperatureRecordsCompanion extends UpdateCompanion<TemperatureRecord> {
   }) : id = Value(id),
        date = Value(date),
        temperature = Value(temperature);
-  static Insertable<TemperatureRecord> custom({
+  static Insertable<TemperatureRecordDb> custom({
     Expression<String>? id,
     Expression<DateTime>? date,
     Expression<double>? temperature,
@@ -991,7 +991,7 @@ class TemperatureRecordsCompanion extends UpdateCompanion<TemperatureRecord> {
 }
 
 class $ExerciseRecordsTable extends ExerciseRecords
-    with TableInfo<$ExerciseRecordsTable, ExerciseRecord> {
+    with TableInfo<$ExerciseRecordsTable, ExerciseRecordDb> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -1072,7 +1072,7 @@ class $ExerciseRecordsTable extends ExerciseRecords
   static const String $name = 'exercise_records';
   @override
   VerificationContext validateIntegrity(
-    Insertable<ExerciseRecord> instance, {
+    Insertable<ExerciseRecordDb> instance, {
     bool isInserting = false,
   }) {
     final context = VerificationContext();
@@ -1130,9 +1130,9 @@ class $ExerciseRecordsTable extends ExerciseRecords
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  ExerciseRecord map(Map<String, dynamic> data, {String? tablePrefix}) {
+  ExerciseRecordDb map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return ExerciseRecord(
+    return ExerciseRecordDb(
       id: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}id'],
@@ -1166,14 +1166,15 @@ class $ExerciseRecordsTable extends ExerciseRecords
   }
 }
 
-class ExerciseRecord extends DataClass implements Insertable<ExerciseRecord> {
+class ExerciseRecordDb extends DataClass
+    implements Insertable<ExerciseRecordDb> {
   final String id;
   final DateTime date;
   final String exerciseType;
   final int durationMinutes;
   final String? note;
   final DateTime? createdAt;
-  const ExerciseRecord({
+  const ExerciseRecordDb({
     required this.id,
     required this.date,
     required this.exerciseType,
@@ -1210,12 +1211,12 @@ class ExerciseRecord extends DataClass implements Insertable<ExerciseRecord> {
     );
   }
 
-  factory ExerciseRecord.fromJson(
+  factory ExerciseRecordDb.fromJson(
     Map<String, dynamic> json, {
     ValueSerializer? serializer,
   }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return ExerciseRecord(
+    return ExerciseRecordDb(
       id: serializer.fromJson<String>(json['id']),
       date: serializer.fromJson<DateTime>(json['date']),
       exerciseType: serializer.fromJson<String>(json['exerciseType']),
@@ -1237,14 +1238,14 @@ class ExerciseRecord extends DataClass implements Insertable<ExerciseRecord> {
     };
   }
 
-  ExerciseRecord copyWith({
+  ExerciseRecordDb copyWith({
     String? id,
     DateTime? date,
     String? exerciseType,
     int? durationMinutes,
     Value<String?> note = const Value.absent(),
     Value<DateTime?> createdAt = const Value.absent(),
-  }) => ExerciseRecord(
+  }) => ExerciseRecordDb(
     id: id ?? this.id,
     date: date ?? this.date,
     exerciseType: exerciseType ?? this.exerciseType,
@@ -1252,8 +1253,8 @@ class ExerciseRecord extends DataClass implements Insertable<ExerciseRecord> {
     note: note.present ? note.value : this.note,
     createdAt: createdAt.present ? createdAt.value : this.createdAt,
   );
-  ExerciseRecord copyWithCompanion(ExerciseRecordsCompanion data) {
-    return ExerciseRecord(
+  ExerciseRecordDb copyWithCompanion(ExerciseRecordsCompanion data) {
+    return ExerciseRecordDb(
       id: data.id.present ? data.id.value : this.id,
       date: data.date.present ? data.date.value : this.date,
       exerciseType: data.exerciseType.present
@@ -1269,7 +1270,7 @@ class ExerciseRecord extends DataClass implements Insertable<ExerciseRecord> {
 
   @override
   String toString() {
-    return (StringBuffer('ExerciseRecord(')
+    return (StringBuffer('ExerciseRecordDb(')
           ..write('id: $id, ')
           ..write('date: $date, ')
           ..write('exerciseType: $exerciseType, ')
@@ -1286,7 +1287,7 @@ class ExerciseRecord extends DataClass implements Insertable<ExerciseRecord> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is ExerciseRecord &&
+      (other is ExerciseRecordDb &&
           other.id == this.id &&
           other.date == this.date &&
           other.exerciseType == this.exerciseType &&
@@ -1295,7 +1296,7 @@ class ExerciseRecord extends DataClass implements Insertable<ExerciseRecord> {
           other.createdAt == this.createdAt);
 }
 
-class ExerciseRecordsCompanion extends UpdateCompanion<ExerciseRecord> {
+class ExerciseRecordsCompanion extends UpdateCompanion<ExerciseRecordDb> {
   final Value<String> id;
   final Value<DateTime> date;
   final Value<String> exerciseType;
@@ -1324,7 +1325,7 @@ class ExerciseRecordsCompanion extends UpdateCompanion<ExerciseRecord> {
        date = Value(date),
        exerciseType = Value(exerciseType),
        durationMinutes = Value(durationMinutes);
-  static Insertable<ExerciseRecord> custom({
+  static Insertable<ExerciseRecordDb> custom({
     Expression<String>? id,
     Expression<DateTime>? date,
     Expression<String>? exerciseType,
@@ -1407,7 +1408,7 @@ class ExerciseRecordsCompanion extends UpdateCompanion<ExerciseRecord> {
 }
 
 class $HealthGoalsTable extends HealthGoals
-    with TableInfo<$HealthGoalsTable, HealthGoal> {
+    with TableInfo<$HealthGoalsTable, HealthGoalDb> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -1490,7 +1491,7 @@ class $HealthGoalsTable extends HealthGoals
   static const String $name = 'health_goals';
   @override
   VerificationContext validateIntegrity(
-    Insertable<HealthGoal> instance, {
+    Insertable<HealthGoalDb> instance, {
     bool isInserting = false,
   }) {
     final context = VerificationContext();
@@ -1545,9 +1546,9 @@ class $HealthGoalsTable extends HealthGoals
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  HealthGoal map(Map<String, dynamic> data, {String? tablePrefix}) {
+  HealthGoalDb map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return HealthGoal(
+    return HealthGoalDb(
       id: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}id'],
@@ -1581,14 +1582,14 @@ class $HealthGoalsTable extends HealthGoals
   }
 }
 
-class HealthGoal extends DataClass implements Insertable<HealthGoal> {
+class HealthGoalDb extends DataClass implements Insertable<HealthGoalDb> {
   final String id;
   final String type;
   final double targetValue;
   final DateTime startDate;
   final DateTime? endDate;
   final DateTime? createdAt;
-  const HealthGoal({
+  const HealthGoalDb({
     required this.id,
     required this.type,
     required this.targetValue,
@@ -1627,12 +1628,12 @@ class HealthGoal extends DataClass implements Insertable<HealthGoal> {
     );
   }
 
-  factory HealthGoal.fromJson(
+  factory HealthGoalDb.fromJson(
     Map<String, dynamic> json, {
     ValueSerializer? serializer,
   }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return HealthGoal(
+    return HealthGoalDb(
       id: serializer.fromJson<String>(json['id']),
       type: serializer.fromJson<String>(json['type']),
       targetValue: serializer.fromJson<double>(json['targetValue']),
@@ -1654,14 +1655,14 @@ class HealthGoal extends DataClass implements Insertable<HealthGoal> {
     };
   }
 
-  HealthGoal copyWith({
+  HealthGoalDb copyWith({
     String? id,
     String? type,
     double? targetValue,
     DateTime? startDate,
     Value<DateTime?> endDate = const Value.absent(),
     Value<DateTime?> createdAt = const Value.absent(),
-  }) => HealthGoal(
+  }) => HealthGoalDb(
     id: id ?? this.id,
     type: type ?? this.type,
     targetValue: targetValue ?? this.targetValue,
@@ -1669,8 +1670,8 @@ class HealthGoal extends DataClass implements Insertable<HealthGoal> {
     endDate: endDate.present ? endDate.value : this.endDate,
     createdAt: createdAt.present ? createdAt.value : this.createdAt,
   );
-  HealthGoal copyWithCompanion(HealthGoalsCompanion data) {
-    return HealthGoal(
+  HealthGoalDb copyWithCompanion(HealthGoalsCompanion data) {
+    return HealthGoalDb(
       id: data.id.present ? data.id.value : this.id,
       type: data.type.present ? data.type.value : this.type,
       targetValue: data.targetValue.present
@@ -1684,7 +1685,7 @@ class HealthGoal extends DataClass implements Insertable<HealthGoal> {
 
   @override
   String toString() {
-    return (StringBuffer('HealthGoal(')
+    return (StringBuffer('HealthGoalDb(')
           ..write('id: $id, ')
           ..write('type: $type, ')
           ..write('targetValue: $targetValue, ')
@@ -1701,7 +1702,7 @@ class HealthGoal extends DataClass implements Insertable<HealthGoal> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is HealthGoal &&
+      (other is HealthGoalDb &&
           other.id == this.id &&
           other.type == this.type &&
           other.targetValue == this.targetValue &&
@@ -1710,7 +1711,7 @@ class HealthGoal extends DataClass implements Insertable<HealthGoal> {
           other.createdAt == this.createdAt);
 }
 
-class HealthGoalsCompanion extends UpdateCompanion<HealthGoal> {
+class HealthGoalsCompanion extends UpdateCompanion<HealthGoalDb> {
   final Value<String> id;
   final Value<String> type;
   final Value<double> targetValue;
@@ -1739,7 +1740,7 @@ class HealthGoalsCompanion extends UpdateCompanion<HealthGoal> {
        type = Value(type),
        targetValue = Value(targetValue),
        startDate = Value(startDate);
-  static Insertable<HealthGoal> custom({
+  static Insertable<HealthGoalDb> custom({
     Expression<String>? id,
     Expression<String>? type,
     Expression<double>? targetValue,
@@ -1966,17 +1967,17 @@ class $$StepRecordsTableTableManager
         RootTableManager<
           _$HealthDatabase,
           $StepRecordsTable,
-          StepRecord,
+          StepRecordDb,
           $$StepRecordsTableFilterComposer,
           $$StepRecordsTableOrderingComposer,
           $$StepRecordsTableAnnotationComposer,
           $$StepRecordsTableCreateCompanionBuilder,
           $$StepRecordsTableUpdateCompanionBuilder,
           (
-            StepRecord,
-            BaseReferences<_$HealthDatabase, $StepRecordsTable, StepRecord>,
+            StepRecordDb,
+            BaseReferences<_$HealthDatabase, $StepRecordsTable, StepRecordDb>,
           ),
-          StepRecord,
+          StepRecordDb,
           PrefetchHooks Function()
         > {
   $$StepRecordsTableTableManager(_$HealthDatabase db, $StepRecordsTable table)
@@ -2034,17 +2035,17 @@ typedef $$StepRecordsTableProcessedTableManager =
     ProcessedTableManager<
       _$HealthDatabase,
       $StepRecordsTable,
-      StepRecord,
+      StepRecordDb,
       $$StepRecordsTableFilterComposer,
       $$StepRecordsTableOrderingComposer,
       $$StepRecordsTableAnnotationComposer,
       $$StepRecordsTableCreateCompanionBuilder,
       $$StepRecordsTableUpdateCompanionBuilder,
       (
-        StepRecord,
-        BaseReferences<_$HealthDatabase, $StepRecordsTable, StepRecord>,
+        StepRecordDb,
+        BaseReferences<_$HealthDatabase, $StepRecordsTable, StepRecordDb>,
       ),
-      StepRecord,
+      StepRecordDb,
       PrefetchHooks Function()
     >;
 typedef $$WeightRecordsTableCreateCompanionBuilder =
@@ -2151,17 +2152,21 @@ class $$WeightRecordsTableTableManager
         RootTableManager<
           _$HealthDatabase,
           $WeightRecordsTable,
-          WeightRecord,
+          WeightRecordDb,
           $$WeightRecordsTableFilterComposer,
           $$WeightRecordsTableOrderingComposer,
           $$WeightRecordsTableAnnotationComposer,
           $$WeightRecordsTableCreateCompanionBuilder,
           $$WeightRecordsTableUpdateCompanionBuilder,
           (
-            WeightRecord,
-            BaseReferences<_$HealthDatabase, $WeightRecordsTable, WeightRecord>,
+            WeightRecordDb,
+            BaseReferences<
+              _$HealthDatabase,
+              $WeightRecordsTable,
+              WeightRecordDb
+            >,
           ),
-          WeightRecord,
+          WeightRecordDb,
           PrefetchHooks Function()
         > {
   $$WeightRecordsTableTableManager(
@@ -2217,17 +2222,17 @@ typedef $$WeightRecordsTableProcessedTableManager =
     ProcessedTableManager<
       _$HealthDatabase,
       $WeightRecordsTable,
-      WeightRecord,
+      WeightRecordDb,
       $$WeightRecordsTableFilterComposer,
       $$WeightRecordsTableOrderingComposer,
       $$WeightRecordsTableAnnotationComposer,
       $$WeightRecordsTableCreateCompanionBuilder,
       $$WeightRecordsTableUpdateCompanionBuilder,
       (
-        WeightRecord,
-        BaseReferences<_$HealthDatabase, $WeightRecordsTable, WeightRecord>,
+        WeightRecordDb,
+        BaseReferences<_$HealthDatabase, $WeightRecordsTable, WeightRecordDb>,
       ),
-      WeightRecord,
+      WeightRecordDb,
       PrefetchHooks Function()
     >;
 typedef $$TemperatureRecordsTableCreateCompanionBuilder =
@@ -2336,21 +2341,21 @@ class $$TemperatureRecordsTableTableManager
         RootTableManager<
           _$HealthDatabase,
           $TemperatureRecordsTable,
-          TemperatureRecord,
+          TemperatureRecordDb,
           $$TemperatureRecordsTableFilterComposer,
           $$TemperatureRecordsTableOrderingComposer,
           $$TemperatureRecordsTableAnnotationComposer,
           $$TemperatureRecordsTableCreateCompanionBuilder,
           $$TemperatureRecordsTableUpdateCompanionBuilder,
           (
-            TemperatureRecord,
+            TemperatureRecordDb,
             BaseReferences<
               _$HealthDatabase,
               $TemperatureRecordsTable,
-              TemperatureRecord
+              TemperatureRecordDb
             >,
           ),
-          TemperatureRecord,
+          TemperatureRecordDb,
           PrefetchHooks Function()
         > {
   $$TemperatureRecordsTableTableManager(
@@ -2409,21 +2414,21 @@ typedef $$TemperatureRecordsTableProcessedTableManager =
     ProcessedTableManager<
       _$HealthDatabase,
       $TemperatureRecordsTable,
-      TemperatureRecord,
+      TemperatureRecordDb,
       $$TemperatureRecordsTableFilterComposer,
       $$TemperatureRecordsTableOrderingComposer,
       $$TemperatureRecordsTableAnnotationComposer,
       $$TemperatureRecordsTableCreateCompanionBuilder,
       $$TemperatureRecordsTableUpdateCompanionBuilder,
       (
-        TemperatureRecord,
+        TemperatureRecordDb,
         BaseReferences<
           _$HealthDatabase,
           $TemperatureRecordsTable,
-          TemperatureRecord
+          TemperatureRecordDb
         >,
       ),
-      TemperatureRecord,
+      TemperatureRecordDb,
       PrefetchHooks Function()
     >;
 typedef $$ExerciseRecordsTableCreateCompanionBuilder =
@@ -2564,21 +2569,21 @@ class $$ExerciseRecordsTableTableManager
         RootTableManager<
           _$HealthDatabase,
           $ExerciseRecordsTable,
-          ExerciseRecord,
+          ExerciseRecordDb,
           $$ExerciseRecordsTableFilterComposer,
           $$ExerciseRecordsTableOrderingComposer,
           $$ExerciseRecordsTableAnnotationComposer,
           $$ExerciseRecordsTableCreateCompanionBuilder,
           $$ExerciseRecordsTableUpdateCompanionBuilder,
           (
-            ExerciseRecord,
+            ExerciseRecordDb,
             BaseReferences<
               _$HealthDatabase,
               $ExerciseRecordsTable,
-              ExerciseRecord
+              ExerciseRecordDb
             >,
           ),
-          ExerciseRecord,
+          ExerciseRecordDb,
           PrefetchHooks Function()
         > {
   $$ExerciseRecordsTableTableManager(
@@ -2642,17 +2647,21 @@ typedef $$ExerciseRecordsTableProcessedTableManager =
     ProcessedTableManager<
       _$HealthDatabase,
       $ExerciseRecordsTable,
-      ExerciseRecord,
+      ExerciseRecordDb,
       $$ExerciseRecordsTableFilterComposer,
       $$ExerciseRecordsTableOrderingComposer,
       $$ExerciseRecordsTableAnnotationComposer,
       $$ExerciseRecordsTableCreateCompanionBuilder,
       $$ExerciseRecordsTableUpdateCompanionBuilder,
       (
-        ExerciseRecord,
-        BaseReferences<_$HealthDatabase, $ExerciseRecordsTable, ExerciseRecord>,
+        ExerciseRecordDb,
+        BaseReferences<
+          _$HealthDatabase,
+          $ExerciseRecordsTable,
+          ExerciseRecordDb
+        >,
       ),
-      ExerciseRecord,
+      ExerciseRecordDb,
       PrefetchHooks Function()
     >;
 typedef $$HealthGoalsTableCreateCompanionBuilder =
@@ -2791,17 +2800,17 @@ class $$HealthGoalsTableTableManager
         RootTableManager<
           _$HealthDatabase,
           $HealthGoalsTable,
-          HealthGoal,
+          HealthGoalDb,
           $$HealthGoalsTableFilterComposer,
           $$HealthGoalsTableOrderingComposer,
           $$HealthGoalsTableAnnotationComposer,
           $$HealthGoalsTableCreateCompanionBuilder,
           $$HealthGoalsTableUpdateCompanionBuilder,
           (
-            HealthGoal,
-            BaseReferences<_$HealthDatabase, $HealthGoalsTable, HealthGoal>,
+            HealthGoalDb,
+            BaseReferences<_$HealthDatabase, $HealthGoalsTable, HealthGoalDb>,
           ),
-          HealthGoal,
+          HealthGoalDb,
           PrefetchHooks Function()
         > {
   $$HealthGoalsTableTableManager(_$HealthDatabase db, $HealthGoalsTable table)
@@ -2863,17 +2872,17 @@ typedef $$HealthGoalsTableProcessedTableManager =
     ProcessedTableManager<
       _$HealthDatabase,
       $HealthGoalsTable,
-      HealthGoal,
+      HealthGoalDb,
       $$HealthGoalsTableFilterComposer,
       $$HealthGoalsTableOrderingComposer,
       $$HealthGoalsTableAnnotationComposer,
       $$HealthGoalsTableCreateCompanionBuilder,
       $$HealthGoalsTableUpdateCompanionBuilder,
       (
-        HealthGoal,
-        BaseReferences<_$HealthDatabase, $HealthGoalsTable, HealthGoal>,
+        HealthGoalDb,
+        BaseReferences<_$HealthDatabase, $HealthGoalsTable, HealthGoalDb>,
       ),
-      HealthGoal,
+      HealthGoalDb,
       PrefetchHooks Function()
     >;
 

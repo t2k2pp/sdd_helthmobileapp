@@ -7,6 +7,7 @@ import 'package:path/path.dart' as p;
 part 'health_database.g.dart';
 
 /// 歩数テーブル
+@DataClassName('StepRecordDb')
 class StepRecords extends Table {
   TextColumn get id => text()();
   DateTimeColumn get date => dateTime()();
@@ -19,6 +20,7 @@ class StepRecords extends Table {
 }
 
 /// 体重テーブル
+@DataClassName('WeightRecordDb')
 class WeightRecords extends Table {
   TextColumn get id => text()();
   DateTimeColumn get date => dateTime()();
@@ -30,6 +32,7 @@ class WeightRecords extends Table {
 }
 
 /// 体温テーブル
+@DataClassName('TemperatureRecordDb')
 class TemperatureRecords extends Table {
   TextColumn get id => text()();
   DateTimeColumn get date => dateTime()();
@@ -41,6 +44,7 @@ class TemperatureRecords extends Table {
 }
 
 /// 運動テーブル
+@DataClassName('ExerciseRecordDb')
 class ExerciseRecords extends Table {
   TextColumn get id => text()();
   DateTimeColumn get date => dateTime()();
@@ -54,6 +58,7 @@ class ExerciseRecords extends Table {
 }
 
 /// 目標テーブル
+@DataClassName('HealthGoalDb')
 class HealthGoals extends Table {
   TextColumn get id => text()();
   TextColumn get type => text()(); // steps, weight, exercise
@@ -80,11 +85,11 @@ class HealthDatabase extends _$HealthDatabase {
   int get schemaVersion => 1;
 
   // 歩数CRUD
-  Future<List<StepRecord>> getAllStepRecords() => select(stepRecords).get();
+  Future<List<StepRecordDb>> getAllStepRecords() => select(stepRecords).get();
   
-  Stream<List<StepRecord>> watchStepRecords() => select(stepRecords).watch();
+  Stream<List<StepRecordDb>> watchStepRecords() => select(stepRecords).watch();
   
-  Future<List<StepRecord>> getStepRecordsByDateRange(DateTime start, DateTime end) {
+  Future<List<StepRecordDb>> getStepRecordsByDateRange(DateTime start, DateTime end) {
     return (select(stepRecords)
           ..where((t) => t.date.isBetweenValues(start, end))
           ..orderBy([(t) => OrderingTerm.desc(t.date)]))
@@ -101,11 +106,11 @@ class HealthDatabase extends _$HealthDatabase {
       (delete(stepRecords)..where((t) => t.id.equals(id))).go();
 
   // 体重CRUD
-  Future<List<WeightRecord>> getAllWeightRecords() => select(weightRecords).get();
+  Future<List<WeightRecordDb>> getAllWeightRecords() => select(weightRecords).get();
   
-  Stream<List<WeightRecord>> watchWeightRecords() => select(weightRecords).watch();
+  Stream<List<WeightRecordDb>> watchWeightRecords() => select(weightRecords).watch();
   
-  Future<List<WeightRecord>> getWeightRecordsByDateRange(DateTime start, DateTime end) {
+  Future<List<WeightRecordDb>> getWeightRecordsByDateRange(DateTime start, DateTime end) {
     return (select(weightRecords)
           ..where((t) => t.date.isBetweenValues(start, end))
           ..orderBy([(t) => OrderingTerm.desc(t.date)]))
@@ -122,13 +127,13 @@ class HealthDatabase extends _$HealthDatabase {
       (delete(weightRecords)..where((t) => t.id.equals(id))).go();
 
   // 体温CRUD
-  Future<List<TemperatureRecord>> getAllTemperatureRecords() =>
+  Future<List<TemperatureRecordDb>> getAllTemperatureRecords() =>
       select(temperatureRecords).get();
   
-  Stream<List<TemperatureRecord>> watchTemperatureRecords() =>
+  Stream<List<TemperatureRecordDb>> watchTemperatureRecords() =>
       select(temperatureRecords).watch();
   
-  Future<List<TemperatureRecord>> getTemperatureRecordsByDateRange(
+  Future<List<TemperatureRecordDb>> getTemperatureRecordsByDateRange(
       DateTime start, DateTime end) {
     return (select(temperatureRecords)
           ..where((t) => t.date.isBetweenValues(start, end))
@@ -146,13 +151,13 @@ class HealthDatabase extends _$HealthDatabase {
       (delete(temperatureRecords)..where((t) => t.id.equals(id))).go();
 
   // 運動CRUD
-  Future<List<ExerciseRecord>> getAllExerciseRecords() =>
+  Future<List<ExerciseRecordDb>> getAllExerciseRecords() =>
       select(exerciseRecords).get();
   
-  Stream<List<ExerciseRecord>> watchExerciseRecords() =>
+  Stream<List<ExerciseRecordDb>> watchExerciseRecords() =>
       select(exerciseRecords).watch();
   
-  Future<List<ExerciseRecord>> getExerciseRecordsByDateRange(
+  Future<List<ExerciseRecordDb>> getExerciseRecordsByDateRange(
       DateTime start, DateTime end) {
     return (select(exerciseRecords)
           ..where((t) => t.date.isBetweenValues(start, end))
@@ -170,11 +175,11 @@ class HealthDatabase extends _$HealthDatabase {
       (delete(exerciseRecords)..where((t) => t.id.equals(id))).go();
 
   // 目標CRUD
-  Future<List<HealthGoal>> getAllGoals() => select(healthGoals).get();
+  Future<List<HealthGoalDb>> getAllGoals() => select(healthGoals).get();
   
-  Stream<List<HealthGoal>> watchGoals() => select(healthGoals).watch();
+  Stream<List<HealthGoalDb>> watchGoals() => select(healthGoals).watch();
   
-  Future<HealthGoal?> getGoalByType(String type) =>
+  Future<HealthGoalDb?> getGoalByType(String type) =>
       (select(healthGoals)..where((t) => t.type.equals(type))).getSingleOrNull();
   
   Future<int> insertGoal(HealthGoalsCompanion goal) =>

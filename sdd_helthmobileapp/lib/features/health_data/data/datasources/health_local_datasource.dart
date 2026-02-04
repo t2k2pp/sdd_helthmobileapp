@@ -47,7 +47,7 @@ class HealthLocalDatasource {
     await _db.deleteStepRecord(id);
   }
 
-  entity.StepRecord _mapToStepEntity(StepRecord record) {
+  entity.StepRecord _mapToStepEntity(StepRecordDb record) {
     return entity.StepRecord(
       id: record.id,
       date: record.date,
@@ -90,7 +90,7 @@ class HealthLocalDatasource {
     await _db.deleteWeightRecord(id);
   }
 
-  entity.WeightRecord _mapToWeightEntity(WeightRecord record) {
+  entity.WeightRecord _mapToWeightEntity(WeightRecordDb record) {
     return entity.WeightRecord(
       id: record.id,
       date: record.date,
@@ -132,7 +132,7 @@ class HealthLocalDatasource {
     await _db.deleteTemperatureRecord(id);
   }
 
-  entity.TemperatureRecord _mapToTemperatureEntity(TemperatureRecord record) {
+  entity.TemperatureRecord _mapToTemperatureEntity(TemperatureRecordDb record) {
     return entity.TemperatureRecord(
       id: record.id,
       date: record.date,
@@ -176,7 +176,7 @@ class HealthLocalDatasource {
     await _db.deleteExerciseRecord(id);
   }
 
-  entity.ExerciseRecord _mapToExerciseEntity(ExerciseRecord record) {
+  entity.ExerciseRecord _mapToExerciseEntity(ExerciseRecordDb record) {
     return entity.ExerciseRecord(
       id: record.id,
       date: record.date,
