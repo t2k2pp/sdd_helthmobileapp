@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.t2k2pp.health_management"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 36
     ndkVersion = "27.0.12077973"
 
     compileOptions {
